@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Henry Tran's Website</title>
+  <link rel="icon" href="https://sfigures.net/images/favicon.ico">
+  <link href="https://sfigures.net/stylesheets/icecream.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+  <body background="https://sfigures.net/images/puppyicecream.jpg">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="https://sfigures.net/">Henry Tran's Website</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://sfigures.net/">Home</a></li>
+          <li class="active"><a href="https://sfigures.net/projects.html">Projects</a></li>
+          <li><a href="https://sfigures.net/nextcloud">NextCloud</a></li>
+          <li><a href="https://plex.tv/web">Plex</a></li>
+          <li><a href="https://sfigures.net/about.html">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  <h1 style="color:#FF69B4;background-color:#551A8B;">Ranks of Popular Ice Cream Flavors</h1>
+    <table><tr><th>Rank</th><th>Flavor</th></tr>
+      <tr style="color:#F4A460;"><td>1</td><td>Vanilla</td></tr>
+      <tr><td>2</td><td>Strawberry</td></tr>
+      <tr><td>3</td><td>Chocolate</td></tr>
+      <tr><td>4</td><td>Cookies and Cream</td></tr>
+      <tr><td>5</td><td>Mint Chocolate Chip</td></tr></table>
+      <center>
+        <script type="text/javascript">
+          var currentTime = new Date();
+          var hours = currentTime.getHours();
+          var minutes = currentTime.getMinutes();
+          var seconds = currentTime.getSeconds();
+          var date = currentTime.getDate();
+          var day = currentTime.getDay();
+          var year = currentTime.getFullYear();
+          var suffix = "AM";
+          if (minutes < 10)
+            minutes = "0" + minutes;
+          if (hours >= 12) {
+            suffix = "PM";
+            hours = hours - 12;
+            }
+          if (hours == 0) {
+            hours = 12;
+          if (seconds > 60)
+            seconds = seconds - 60;
+          }
+          day = day - 1;
+          document.write("<b><div id='d1'>" + hours + ":" + minutes + ":" + seconds + " " + suffix + " " + day + "/" + date + "/" + year + "</div></b>");
+        </script>
+      </center>
+  </body>
+</html>

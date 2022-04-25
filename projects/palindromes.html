@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Henry Tran's Website</title>
+  <link rel="icon" href="https://sfigures.net/images/favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+#mainContent {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-large;
+	font-weight: bold;
+	background-color: #E3F0FB;
+	border-radius: 4px;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="https://sfigures.net/">Henry Tran's Website</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://sfigures.net/">Home</a></li>
+          <li class="active"><a href="https://sfigures.net/projects.html">Projects</a></li>
+          <li><a href="https://sfigures.net/nextcloud">NextCloud</a></li>
+          <li><a href="https://plex.tv/web">Plex</a></li>
+          <li><a href="https://sfigures.net/about.html">About</a></li>
+        </ul>
+      </div>
+    </nav>
+<center>
+<form onsubmit="return false">Type in a word:<br>
+<input type="text" name="originalInput" id="originalInput"><br>
+</form>
+<div id="mainContent">
+<p id="palindromeCheck">Can it be a PALINDROME!?</p>
+</div>
+<button id="clickButton" onclick="buttonPressed()">Click me to check!</button></center>
+<script>
+var yesnoText = document.getElementById("palindromeCheck");
+function buttonPressed() {
+var originalWord = document.getElementById("originalInput").value;
+var permutations = [];
+var realPalindromes = [];
+function *permute(originalWord, n = originalWord.length) {
+	if (originalWord.length <= 2) {
+		yesnoText.textContent = "Enter in more than 2 characters at least!";
+	} else {
+		if (originalWord.length < 8) {
+			if (n <= 0) {
+				yield originalWord.slice(); //Given the permutations from else{}, this will make a copy to use
+			} else {
+				for (let i = 0; i < n; i++) {
+				yield *permute(originalWord, n -1); //Start the function again with length subtracted by 1
+				const j = n % 2 ? 0 : i; //Get remainder of length when length is divided by 2
+				([originalWord[n-1], originalWord[j]] = [originalWord[j], originalWord[n-1]]); //Makes permutations by swapping characters
+				}
+			}
+		} else {
+			yesnoText.textContent = "Less than 8 characters please!";
+		}
+	}
+}
+permuteAndCheckAll();
+function permuteAndCheckAll() {
+permutations = (Array.from(permute(originalWord.split(''))).map(perm => perm.join(''))); //Joins together all
+do {
+	var check = permutations.shift(); //Removes first permutation in array and assigned a variable
+	if (check == check.split('').reverse().join('')) { //Check if the variable is equal to itself reversed
+		realPalindromes.push(" " + check); //Places the palindrome into a new array
+	} else {
+		if (realPalindromes.length > 0) {
+		let uniq = [...new Set(realPalindromes)]; //New array that has all duplicates removed with Set()
+		if (uniq.length == 1) { //If the new array only has 1 object or more
+		yesnoText.textContent = "YES! Your palindrome is:" + uniq;
+		} else {
+			yesnoText.textContent = "YES! Your palindromes are:" + uniq;
+		}
+		} else {
+		yesnoText.textContent = "NO! " + "[" + originalWord + "]" + " cannot be a palindrome!";
+		}
+	}
+}
+while (permutations.length > -1); //Does do{} until the length of the permutations is 0.
+	}
+}
+</script>
+</body>
+</html>

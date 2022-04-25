@@ -1,0 +1,8 @@
+@font-face {
+font-family: "Maplestory Light";
+src: url("https://sfigures.net/fonts/Maplestory_Light.ttf") format ("truetype");
+}
+
+p.customfont {
+  font-family: "Maplestory", Verdana, Tahoma;
+}
